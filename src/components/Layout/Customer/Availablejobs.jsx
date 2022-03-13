@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container,Row,Col,Button } from 'react-bootstrap';
+import { Container,Row,Col } from 'react-bootstrap';
 import Card from '../../UI/Card';
 import classes from "./Availablejobs.module.css";
 
@@ -22,6 +22,10 @@ function Availablejobs(props) {
               <td>Job Location :</td>
               <td>{props.job_location}</td>
             </tr>
+            <tr>
+              <td>Members Needed :</td>
+              <td>3</td>
+            </tr>
           </tbody>
         </table>
       </Col>
@@ -39,6 +43,10 @@ function Availablejobs(props) {
             <tr>
               <td>Phone Number :</td>
               <td>{props.phone_number}</td>
+            </tr>
+            <tr>
+              <td>job Status :</td>
+              <td>Handovered</td>
             </tr>
           </tbody>
         </table>

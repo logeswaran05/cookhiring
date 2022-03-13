@@ -2,14 +2,15 @@ import React,{useContext} from 'react'
 import JobProviderContext from '../../../store/Customer/JobProviderContext'
 import ContentContainer from '../../UI/ContentContainer';
 import Availablejobs from './Availablejobs'
-
+import Customersearchform from './Customersearchform';
 
 function CustomerAvailablejobs() {
     const Context = useContext(JobProviderContext);
 
   return (
-    <ContentContainer>     
-   {Context.availablejobs .map((item) => 
+    <ContentContainer> 
+          <Customersearchform/>
+   {Context.availablejobs.map((item) => 
       <Availablejobs
         key={item.id}
         Id={item.id}

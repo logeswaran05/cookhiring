@@ -1,17 +1,31 @@
-import React, { useRef } from 'react';
+import React, { useRef,useState } from 'react';
 import {Form,Row,Col,Button} from "react-bootstrap";
 import ContentContainer from '../../UI/ContentContainer';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
  
 function Customeraddjob() {
+  const [FromDate, setStartDate] = useState(new Date());
+  const [ToDate, setStartToDate] = useState(FromDate);
    const JobDiscription= useRef();
-   const FromDate=useRef();
-   const ToDate=useRef();
    const WageForDay=useRef();
    const JobLocation=useRef();
    const PhoneNumber=useRef();
-
+  const OnAddjob=(event)=>{
+    event.preventDefault();
+   let formData={}
+   formData.from_date=FromDate;
+   formData.to_date=ToDate;
+   formData.wage_for_day=WageForDay.current.value;
+   formData.job_location=JobLocation.current.value;
+   formData.phone_number=PhoneNumber.current.value;
+   formData.job_description=JobDiscription.current.value;
+   console.log(formData);
+  }
+   
   return <ContentContainer>
-       <form className="m-4 bg-light p-3 rounded " >
+       <form className="m-4 bg-light p-3 rounded " onSubmit={OnAddjob}>
 
 <Row>
   <h3>Add Openings</h3>
@@ -20,7 +34,7 @@ function Customeraddjob() {
       <Form.Label>Job Description</Form.Label>
       <Form.Control
         ref={JobDiscription}
-        id="editJobDiscription"
+        id="JobDiscription"
         type="text"
         placeholder="Enter Job Discription"
        // defaultValue={form_data.job_discription}
@@ -28,22 +42,31 @@ function Customeraddjob() {
     </Form.Group>
     <Form.Group className="mb-3">
       <Form.Label>From Date</Form.Label>
-      <Form.Control
-        ref={FromDate}
-        id="editFromDate"
-        type="date"
-        placeholder="Enter from date"
-    //  defaultValue={form_data.name}
-      />
+      <DatePicker selected={FromDate}
+      minDate={new Date()}
+      
+      onChange={(date) => {setStartDate(date);  setStartToDate(date);} }/>
+
     </Form.Group>
     <Form.Group className="mb-3">
       <Form.Label>Wage For Day</Form.Label>
       <Form.Control
         ref={WageForDay}
-        id="editWageForDay"
+        id="WageForDay"
         type="text"
         placeholder="Enter Wage For Day"
      // defaultValue={form_data.wage_for_day}
+      />
+    </Form.Group>
+    <Form.Group className="mb-3">
+      <Form.Label>Members Needed</Form.Label>
+      <Form.Control
+        ref={PhoneNumber}
+        min="1"
+        id="members needed"
+        type="number"
+        placeholder="Enter number of members needed"
+        //defaultValue={form_data.phone_number}
       />
     </Form.Group>
   </Col>
@@ -52,7 +75,7 @@ function Customeraddjob() {
       <Form.Label>Job Location</Form.Label>
       <Form.Control
         ref={JobLocation}
-        id="editLocation"
+        id="Location"
         type="text"
         placeholder="Enter Job Location"
      // defaultValue={form_data.job_location}
@@ -60,24 +83,23 @@ function Customeraddjob() {
     </Form.Group>
     <Form.Group className="mb-3">
       <Form.Label>To Date</Form.Label>
-      <Form.Control
-        ref={ToDate}
-        id="editToDate"
-        type="date"
-        placeholder="Enter from date"
-      //  defaultValue={form_data.to_date}
-      />
+      <DatePicker selected={ToDate}
+      minDate={FromDate}
+     
+      onChange={(date) => setStartToDate(date)} />
+
     </Form.Group>
     <Form.Group className="mb-3">
       <Form.Label>Phone Number</Form.Label>
       <Form.Control
         ref={PhoneNumber}
-        id="editPhoneNumber"
-        type="number"
+        id="PhoneNumber"
+        type="tele"
         placeholder="Enter Phone Number"
         //defaultValue={form_data.phone_number}
       />
     </Form.Group>
+
   </Col>
 </Row>
 <Row>

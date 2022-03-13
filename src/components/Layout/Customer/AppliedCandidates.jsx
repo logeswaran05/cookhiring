@@ -37,13 +37,16 @@ function AppliedCandidates(props) {
           <td>Email :</td>
           <td>{props.email}</td>
         </tr>
+       
       </tbody>
     </table>
     
   </Col>
 </Row>
-<Col><Button id="chatButton">chat</Button></Col>
-
+<Col className="d-flex justify-content-d-flex justify-content-around">
+<Button id="chatButton">accept</Button>
+<Button id="chatButton">Decline</Button>
+</Col>
 
 </Card>
   )
